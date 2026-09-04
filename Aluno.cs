@@ -3,13 +3,13 @@ using System;
 public class Aluno : Pessoa
 {
 
-    public float matricula {get; set;}
+    public double matricula {get; set;}
     public List<double> notas {get; set;} = new List<double>();
 
     public Dictionary<string, double> Boletim {get; set;} = new Dictionary<string,double>();
     public string[] materia;
     
-    public Aluno(string nome, double cpf, int data, float matricula, List<double> notas, Dictionary<string, double> boletim, string[] materia) : base (nome, (int)cpf, (int)data)
+    public Aluno(string nome, double cpf, int data, double matricula, List<double> notas, Dictionary<string, double> boletim, string[] materia) : base (nome, (int)cpf, (int)data)
     {
         this.matricula = matricula;
         this.notas = notas;
@@ -17,7 +17,7 @@ public class Aluno : Pessoa
         this.materia = materia;
     }
 
-    public Aluno(string nome, double cpf, int data, float matricula) 
+    public Aluno(string nome, double cpf, int data, double matricula) 
     : this(nome, cpf, data, matricula, new List<double>(), new Dictionary<string, double>(), new string[5]) 
     {
     

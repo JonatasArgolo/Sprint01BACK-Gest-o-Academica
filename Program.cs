@@ -1,45 +1,57 @@
 ﻿using System;
 
-namespace GestaoAcad
+
+class GestaoAcad
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        string nomePessoa = Console.ReadLine()!;
+        double cpfPessoa = double.Parse(Console.ReadLine()!);
+        int dataNascimentoP = int.Parse(Console.ReadLine()!);;
+        double matriculaAluno = double.Parse(Console.ReadLine()!);;
+        double salarioProfessor = 3500.00;
+
+        Aluno aluno = new Aluno(nomePessoa, cpfPessoa, dataNascimentoP, matriculaAluno);
+        Professor professor = new Professor(nomePessoa, cpfPessoa, dataNascimentoP, salarioProfessor);
+
+
+        Console.WriteLine(@"
+        ██████╗░███████╗███╗░░░███╗  ██╗░░░██╗██╗███╗░░██╗██████╗░░█████╗░░░██╗░█████╗░██╗░░
+        ██╔══██╗██╔════╝████╗░████║  ██║░░░██║██║████╗░██║██╔══██╗██╔══██╗░██╔╝██╔══██╗╚██╗░
+        ██████╦╝█████╗░░██╔████╔██║  ╚██╗░██╔╝██║██╔██╗██║██║░░██║██║░░██║██╔╝░███████║░╚██╗
+        ██╔══██╗██╔══╝░░██║╚██╔╝██║  ░╚████╔╝░██║██║╚████║██║░░██║██║░░██║╚██╗░██╔══██║░██╔╝
+        ██████╦╝███████╗██║░╚═╝░██║  ░░╚██╔╝░░██║██║░╚███║██████╔╝╚█████╔╝░╚██╗██║░░██║██╔╝░
+        ╚═════╝░╚══════╝╚═╝░░░░░╚═╝  ░░░╚═╝░░░╚═╝╚═╝░░╚══╝╚═════╝░░╚════╝░░░╚═╝╚═╝░░╚═╝╚═╝░░");
+
+        try
         {
-            Aluno aluno = new Aluno("Jonatas", 97585847436, 06102007, 026067792 );
-            Professor professor = new Professor("Caua", 87629473821, 04062003, 034078621);
-
-
-            Console.WriteLine(@"
-██████╗░███████╗███╗░░░███╗  ██╗░░░██╗██╗███╗░░██╗██████╗░░█████╗░░░██╗░█████╗░██╗░░
-██╔══██╗██╔════╝████╗░████║  ██║░░░██║██║████╗░██║██╔══██╗██╔══██╗░██╔╝██╔══██╗╚██╗░
-██████╦╝█████╗░░██╔████╔██║  ╚██╗░██╔╝██║██╔██╗██║██║░░██║██║░░██║██╔╝░███████║░╚██╗
-██╔══██╗██╔══╝░░██║╚██╔╝██║  ░╚████╔╝░██║██║╚████║██║░░██║██║░░██║╚██╗░██╔══██║░██╔╝
-██████╦╝███████╗██║░╚═╝░██║  ░░╚██╔╝░░██║██║░╚███║██████╔╝╚█████╔╝░╚██╗██║░░██║██╔╝░
-╚═════╝░╚══════╝╚═╝░░░░░╚═╝  ░░░╚═╝░░░╚═╝╚═╝░░╚══╝╚═════╝░░╚════╝░░░╚═╝╚═╝░░╚═╝╚═╝░░");
-
-            try
+            Console.Write("Usuário, informe seu vinculo com a instituição:");
+            string vin = Console.ReadLine()!;
+            switch (vin.ToLower())
             {
-                Console.Write("Usuário, informe seu vinculo com a instituição:");
-                string vin = Console.ReadLine()!;
+                case "aluno":
+                    Console.WriteLine("Bem-vindo {0}! Por favor, digite as informações abaixo para acessar as opções.", aluno.getNome(nomePessoa));
+                    Console.Write("Digite sua matricula: {0}", matriculaAluno);
+                    Console.WriteLine("Digite seu CPF: {0}", cpfPessoa);
+                    Console.WriteLine("Digite sua data de nascimento:{0}", dataNascimentoP);
+                    Console.Clear();
 
-                if(vin == "aluno")
-                {
-                    Console.WriteLine("Bem-vindo {0}! Por favor, digite as informações abaixo para acessar as opções.", aluno.getNome(aluno));
-                    Console.WriteLine("Digite sua matricula:");
+                    switch (matriculaAluno)
+                    {
+                        
                     
-                    Console.WriteLine("Digite seu CPF:");
-                    Console.WriteLine("Digite sua data de nascimento:");
-
-                }
-
+                        Console.WriteLine("Bem-vindo {0}! Por favor, escolha uma das opções abaixo.", aluno.getNome(nomePessoa));
+                        Console.WriteLine("1- ");
+                    }
+                case "professor":
             }
-            catch (Exception err)
-            {
-                
-            }
-
-            aluno.boletimFinal();
         }
+        static void fluxoAluno()
+        {
+            Console.WriteLine("Bem-vindo {0}! Por favor, digite as informações abaixo para acessar as opções.", aluno.getNome(nomePessoa));
+        }   
     }
 }
+
+
+
