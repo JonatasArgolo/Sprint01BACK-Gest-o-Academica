@@ -30,26 +30,47 @@ class GestaoAcad
             switch (vin.ToLower())
             {
                 case "aluno":
-                    Console.WriteLine("Bem-vindo {0}! Por favor, digite as informações abaixo para acessar as opções.", aluno.getNome(nomePessoa));
-                    Console.Write("Digite sua matricula: {0}", matriculaAluno);
-                    Console.WriteLine("Digite seu CPF: {0}", cpfPessoa);
-                    Console.WriteLine("Digite sua data de nascimento:{0}", dataNascimentoP);
-                    Console.Clear();
-
-                    switch (matriculaAluno)
-                    {
-                        
-                    
-                        Console.WriteLine("Bem-vindo {0}! Por favor, escolha uma das opções abaixo.", aluno.getNome(nomePessoa));
-                        Console.WriteLine("1- ");
-                    }
+                    fluxoAluno();
+                    break;
                 case "professor":
+                    fluxoProfessor();
+                    break;
             }
+        } catch (Exception ex)
+        {
+            Console.WriteLine($"Ocorreu um erro: {ex.Message}");
         }
-        static void fluxoAluno()
+        void fluxoAluno()
         {
             Console.WriteLine("Bem-vindo {0}! Por favor, digite as informações abaixo para acessar as opções.", aluno.getNome(nomePessoa));
-        }   
+            Console.Write("Digite sua matricula: {0}", matriculaAluno);
+            Console.WriteLine("Digite seu CPF: {0}", cpfPessoa);
+            Console.WriteLine("Digite sua data de nascimento:{0}", dataNascimentoP);
+            Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar boletim, 3- Sair");
+            int escolha = int.Parse(Console.ReadLine()!);
+
+            switch(escolha)
+            {
+                case 1:
+                    Console.WriteLine("=== INFORMAÇÕES DO ALUNO ===");
+                    Console.WriteLine($"Nome: {aluno.getNome(nomePessoa)}");
+                    Console.WriteLine($"CPF: {cpfPessoa}");
+                    Console.WriteLine($"Data de Nascimento: {dataNascimentoP}");
+                    Console.WriteLine($"Matrícula: {matriculaAluno}");
+                    break;
+                case 2:
+                    aluno.boletimFinal();
+                    break;
+                case 3:
+                    Console.WriteLine("Saindo...");
+                    break;
+            }
+            
+        } 
+        void fluxoProfessor()
+        {
+            
+        }
     }
 }
 
