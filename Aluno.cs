@@ -52,7 +52,6 @@ public class Aluno : Pessoa
             return Math.Round(media, 1);
         }
     }
-
     public void boletimFinal()
     {
         GerarBoletim();
@@ -65,5 +64,4 @@ public class Aluno : Pessoa
         Console.WriteLine("----------------------------------");
         Console.WriteLine($"Média Geral : {MediaGeral}");
     }
-
 }

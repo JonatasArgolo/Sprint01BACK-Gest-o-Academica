@@ -64,5 +64,4 @@ public class Professor : Pessoa
             }
         }
     }
-
 }
