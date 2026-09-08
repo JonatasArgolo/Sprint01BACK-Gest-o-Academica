@@ -4,12 +4,12 @@ public class Professor : Pessoa
     public List<string> Turmas {get; set;} = new List<string>();
     private const double ValorBonusPorTurma = 350.00;
 
-    public Professor(string nome, double cpf, int data, double salario, List<string> turma) : base(nome, (int)cpf, (int)data)
+    public Professor(string nome, string cpf, DateTime data, double salario, List<string> turma) : base(nome, cpf, data)
     {
         this.SalarioBase = salario;
         this.Turmas = turma;
     }
-    public Professor(string nome, double cpf, int data, double salario) 
+    public Professor(string nome, string cpf, DateTime data, double salario) 
     : this(nome, cpf, data, salario, new List<string>()) 
     {
     

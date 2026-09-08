@@ -3,28 +3,28 @@ using System;
 public abstract class Pessoa
 {
     protected string nome;
-    protected double cpf;
-    protected double dataNascimento;
+    protected string cpf;
+    protected DateTime dataNascimento;
 
-    public Pessoa(string nome, int cpf, double data)
+    public Pessoa(string nome, string cpf, DateTime data)
     {
     this.nome = nome;
     this.cpf = cpf;
     this.dataNascimento = data;
     }
 
-    public string getNome (string nome)
+    public string getNome ()
     {
         return this.nome;
     }
 
-    public int getCPF(double cpf)
+    public string getCPF(string cpf)
     {
-        return (int)this.cpf;
+        return this.cpf;
     }
 
-    public int getData(double data)
+    public DateTime getData(DateTime data)
     {
-        return (int)this.dataNascimento;
+        return this.dataNascimento;
     }
 }
