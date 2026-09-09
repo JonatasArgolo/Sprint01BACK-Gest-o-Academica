@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace GestaoAcad
 {
@@ -11,10 +12,14 @@ namespace GestaoAcad
             while (true)
             {
                 Console.Write(mensagem);
-                string entrada = Console.ReadLine()!;
+                string entrada = Console.ReadLine()?.Trim()!;
+                bool temLetrasRepetidas = Regex.IsMatch(entrada, @"(.)\1{2,}");
+                bool formatoValido = Regex.IsMatch(entrada, @"^[a-zA-ZÀ-ÿ]{2,30}( [a-zA-ZÀ-ÿ]{2,30})*$");
 
-                if (!string.IsNullOrWhiteSpace(entrada) && !entrada.Any(char.IsDigit))
+                if (!string.IsNullOrWhiteSpace(entrada) && formatoValido && !temLetrasRepetidas)
+                {
                     return entrada;
+                }
 
                 Console.WriteLine("Erro: Entrada inválida. Digite apenas letras!\n");
             }

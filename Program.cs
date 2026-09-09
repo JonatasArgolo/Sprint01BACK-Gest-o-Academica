@@ -10,6 +10,8 @@ namespace GestaoAcad
             DateTime dataNascimentoP = Validador.LerData("Digite sua Data de Nascimento (dd/mm/aaaa): ");
             double salarioProfessor = 3500.00;
 
+            Console.Clear();
+
             Console.WriteLine(@"
             ██████╗░███████╗███╗░░░███╗  ██╗░░░██╗██╗███╗░░██╗██████╗░░█████╗░░░██╗░█████╗░██╗░░
             ██╔══██╗██╔════╝████╗░████║  ██║░░░██║██║████╗░██║██╔══██╗██╔══██╗░██╔╝██╔══██╗╚██╗░
@@ -20,8 +22,21 @@ namespace GestaoAcad
 
             try
             {
-                Console.Write("Bem vindo {0}! Informe seu vinculo com a instituição: ", nomePessoa );
-                string vin = Console.ReadLine()?.ToLower() ?? "";
+                    string vin = "";
+                do
+                {
+                    while (vin != "aluno" && vin != "professor")
+                    {
+                        Console.Write("Bem vindo {0}! Informe seu vinculo com a instituição: (aluno/professor)", nomePessoa );
+                        vin = Console.ReadLine()?.ToLower().Trim() ?? "";
+
+                        if (vin != "aluno" && vin != "professor")
+                        {
+                        Console.WriteLine("Opção inválida! Por favor, informe 'aluno' ou 'professor'.\n");
+                        }
+                    }   
+                } while(vin != "aluno" && vin != "professor");
+                Console.Clear();
                 switch (vin)
                 {
                     case "aluno":
@@ -31,6 +46,7 @@ namespace GestaoAcad
                         {
                             Console.Write("Matrícula inválida. Digite apenas números: ");
                         }
+                        Console.Clear();
                         Aluno aluno = new Aluno(nomePessoa, cpfPessoa, dataNascimentoP, matriculaAluno);
                         fluxoAluno(aluno);
                         break;
@@ -63,56 +79,66 @@ namespace GestaoAcad
                 }
             void fluxoAluno(Aluno aluno)
             {
-                Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar boletim, 3- Sair");
-                int escolha = int.Parse(Console.ReadLine()!);
+                bool executando = true;
 
-                switch(escolha)
+                while (executando)
                 {
-                    case 1:
-                        Console.WriteLine("=== INFORMAÇÕES DO ALUNO ===");
-                        Console.WriteLine($"Nome: {aluno.getNome()}");
-                        Console.WriteLine($"CPF: {cpfPessoa}");
-                        Console.WriteLine($"Data de Nascimento: {dataNascimentoP}");
-                        Console.WriteLine($"Matrícula: {aluno.matricula}");
-                        break;
-                    case 2:
-                        aluno.boletimFinal();
-                        break;
-                    case 3:
-                        Console.WriteLine("Saindo...");
-                        break;
+                    Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar boletim, 3- Sair");
+                    int escolha = int.Parse(Console.ReadLine()!);
+
+                    switch(escolha)
+                    {
+                        case 1:
+                            Console.WriteLine("=== INFORMAÇÕES DO ALUNO ===");
+                            Console.WriteLine($"Nome: {aluno.getNome()}");
+                            Console.WriteLine($"CPF: {cpfPessoa}");
+                            Console.WriteLine($"Data de Nascimento: {dataNascimentoP}");
+                            Console.WriteLine($"Matrícula: {aluno.matricula}");
+                            break;
+                        case 2:
+                            aluno.boletimFinal();
+                            break;
+                        case 3:
+                        executando = false;
+                            Console.WriteLine("Saindo...");
+                            break;
+                    }
+                    Console.WriteLine("\n" + new string('-', 30));
                 }
-                
             } 
             void fluxoProfessor(Professor professor)
             {
-                Console.WriteLine("Bem-vindo {0}! Por favor, digite as informações abaixo para acessar as opções.", professor.getNome());
-                Console.WriteLine("Digite seu CPF: {0}", cpfPessoa);
-                Console.WriteLine("Digite sua data de nascimento:{0}", dataNascimentoP);
-                Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar contracheque, 3- Ver turmas, 4-Sair");
-                int escolha = int.Parse(Console.ReadLine()!);
+                bool executando = true;
 
-                switch (escolha)
+                while (executando)
                 {
-                    case 1:
-                        Console.WriteLine("=== INFORMAÇÕES DO PROFESSOR ===");
-                        Console.WriteLine($"Nome: {professor.getNome()}");
-                        Console.WriteLine($"CPF: {cpfPessoa}");
-                        Console.WriteLine($"Data de Nascimento: {dataNascimentoP}");
-                        Console.WriteLine($"Salario Bruto: {salarioProfessor}");
-                        break;
-                    case 2:
-                        professor.ExibirContracheque();
-                        break;
-                    case 3:
-                        professor.GerarTurmasAleatorias();
-                        break;
-                    case 4:
-                        Console.WriteLine("Saindo...");
-                        break;
-                    default:
-                        break;
+                    
+                    Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar contracheque, 3- Ver turmas, 4-Sair");
+                    int escolha = int.Parse(Console.ReadLine()!);
+                    switch (escolha)
+                    {
+                        case 1:
+                            Console.WriteLine("=== INFORMAÇÕES DO PROFESSOR ===");
+                            Console.WriteLine($"Nome: {professor.getNome()}");
+                            Console.WriteLine($"CPF: {cpfPessoa}");
+                            Console.WriteLine($"Data de Nascimento: {dataNascimentoP}");
+                            Console.WriteLine($"Salario Bruto: {salarioProfessor}");
+                            break;
+                        case 2:
+                            professor.ExibirContracheque();
+                            break;
+                        case 3:
+                            professor.GerarTurmasAleatorias();
+                            break;
+                        case 4:
+                        executando = false;
+                            Console.WriteLine("Saindo...");
+                            break;
+                        default:
+                            break;
 
+                    }
+                    Console.WriteLine("\n" + new string('-', 30));
                 }
             }
         }

@@ -63,5 +63,10 @@ public class Professor : Pessoa
                 Turmas.Add(turma);
             }
         }
+        Console.WriteLine("Turmas geradas/atribuídas:");
+        foreach (var turma in Turmas)
+        {
+            Console.WriteLine($"- Turma: {turma}");
+        }
     }
 }
