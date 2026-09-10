@@ -12,14 +12,15 @@ namespace GestaoAcad
             while (true)
             {
                 Console.Write(mensagem);
-                string entrada = Console.ReadLine()?.Trim()!;
+                string entradaBruta = Console.ReadLine() ?? " ";
+                string entrada = entradaBruta.Trim();
                 bool temLetrasRepetidas = Regex.IsMatch(entrada, @"(.)\1{2,}");
                 bool formatoValido = Regex.IsMatch(entrada, @"^[a-zA-ZÀ-ÿ]{2,30}( [a-zA-ZÀ-ÿ]{2,30})*$");
 
                 if (!string.IsNullOrWhiteSpace(entrada) && formatoValido && !temLetrasRepetidas)
                 {
-                    return entrada;
-                }
+                    return Regex.Replace(entrada, @"\s+", " ");
+        }
 
                 Console.WriteLine("Erro: Entrada inválida. Digite apenas letras!\n");
             }

@@ -40,11 +40,16 @@ namespace GestaoAcad
                 switch (vin)
                 {
                     case "aluno":
+                        string entradaMatricula;
                         double matriculaAluno;
-                        Console.Write("Digite sua Matricula: ");
-                        while (!double.TryParse(Console.ReadLine(), out matriculaAluno))
+
+                        Console.Write("Digite sua Matrícula (6 dígitos): ");
+                        entradaMatricula = Console.ReadLine()?.Trim() ?? "";
+
+                        while (entradaMatricula.Length != 6 || !double.TryParse(entradaMatricula, out matriculaAluno))
                         {
-                            Console.Write("Matrícula inválida. Digite apenas números: ");
+                            Console.Write("Matrícula inválida! Digite exatamente 6 números: ");
+                            entradaMatricula = Console.ReadLine()?.Trim() ?? "";
                         }
                         Console.Clear();
                         Aluno aluno = new Aluno(nomePessoa, cpfPessoa, dataNascimentoP, matriculaAluno);
@@ -84,7 +89,12 @@ namespace GestaoAcad
                 while (executando)
                 {
                     Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar boletim, 3- Sair");
-                    int escolha = int.Parse(Console.ReadLine()!);
+                    string entrada = Console.ReadLine()?.Trim() ?? "";
+
+                    if (!int.TryParse(entrada, out int escolha))
+                    {
+                        Console.WriteLine("Por favor, digite um número válido!");
+                    }
 
                     switch(escolha)
                     {
@@ -114,7 +124,12 @@ namespace GestaoAcad
                 {
                     
                     Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar contracheque, 3- Ver turmas, 4-Sair");
-                    int escolha = int.Parse(Console.ReadLine()!);
+                    string entrada = Console.ReadLine()?.Trim() ?? "";
+
+                    if (!int.TryParse(entrada, out int escolha))
+                    {
+                        Console.WriteLine("Por favor, digite um número válido!");
+                    }
                     switch (escolha)
                     {
                         case 1:
