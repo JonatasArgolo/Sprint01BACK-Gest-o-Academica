@@ -24,6 +24,12 @@ public class Professor : Pessoa
     {
         return SalarioBase + CalcularBonusTurmas();
     }
+    public override void ExibirInformacoes()
+    {
+        Console.WriteLine("=== INFORMAÇÕES DO PROFESSOR ===");
+        base.ExibirInformacoes(); // Imprime Nome, CPF e Data de Nascimento
+        Console.WriteLine($"Salário Bruto: R$ {SalarioBase:F2}");
+    }
 
     
     public void ExibirContracheque()

@@ -99,11 +99,7 @@ namespace GestaoAcad
                     switch(escolha)
                     {
                         case 1:
-                            Console.WriteLine("=== INFORMAÇÕES DO ALUNO ===");
-                            Console.WriteLine($"Nome: {aluno.getNome()}");
-                            Console.WriteLine($"CPF: {cpfPessoa}");
-                            Console.WriteLine($"Data de Nascimento: {dataNascimentoP}");
-                            Console.WriteLine($"Matrícula: {aluno.matricula}");
+                            aluno.ExibirInformacoes();
                             break;
                         case 2:
                             aluno.boletimFinal();
@@ -133,11 +129,7 @@ namespace GestaoAcad
                     switch (escolha)
                     {
                         case 1:
-                            Console.WriteLine("=== INFORMAÇÕES DO PROFESSOR ===");
-                            Console.WriteLine($"Nome: {professor.getNome()}");
-                            Console.WriteLine($"CPF: {cpfPessoa}");
-                            Console.WriteLine($"Data de Nascimento: {dataNascimentoP}");
-                            Console.WriteLine($"Salario Bruto: {salarioProfessor}");
+                            professor.ExibirInformacoes();
                             break;
                         case 2:
                             professor.ExibirContracheque();

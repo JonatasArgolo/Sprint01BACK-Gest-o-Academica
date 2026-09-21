@@ -1,6 +1,7 @@
 using System;
+using GestaoAcad;
 
-public abstract class Pessoa
+public abstract class Pessoa : IImprimivel
 {
     protected string nome;
     protected string cpf;
@@ -26,5 +27,12 @@ public abstract class Pessoa
     public DateTime getData(DateTime data)
     {
         return this.dataNascimento;
+    }
+
+    public virtual void ExibirInformacoes()
+    {
+        Console.WriteLine($"Nome: {nome}");
+        Console.WriteLine($"CPF: {cpf}");
+        Console.WriteLine($"Data de Nascimento: {dataNascimento:dd/MM/yyyy}");
     }
 }

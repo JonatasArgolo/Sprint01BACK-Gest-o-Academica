@@ -34,6 +34,13 @@ public class Aluno : Pessoa
         }
     }
 
+    public override void ExibirInformacoes()
+    {
+        Console.WriteLine("=== INFORMAÇÕES DO ALUNO ===");
+        base.ExibirInformacoes(); 
+        Console.WriteLine($"Matrícula: {matricula}"); 
+    }
+
     public double MediaGeral
     {
         get
