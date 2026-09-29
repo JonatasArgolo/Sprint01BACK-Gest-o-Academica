@@ -9,6 +9,7 @@ namespace GestaoAcad
             string cpfPessoa = Validador.LerApenasNumeros("Digite seu CPF: ", tamanhoEsperado: 11);
             DateTime dataNascimentoP = Validador.LerData("Digite sua Data de Nascimento (dd/mm/aaaa): ");
             double salarioProfessor = 3500.00;
+            string[] disciplinasProfessor = {"Português", "Matemática", "História", "Física", "Química"};
 
             Console.Clear();
 
@@ -56,7 +57,18 @@ namespace GestaoAcad
                         fluxoAluno(aluno);
                         break;
                     case "professor":
-                        Professor professor = new Professor(nomePessoa, cpfPessoa, dataNascimentoP, salarioProfessor);
+                        double matriculaProfessor;
+
+                        Console.Write("Digite sua Matrícula (6 dígitos): ");
+                        entradaMatricula = Console.ReadLine()?.Trim() ?? "";
+
+                        while (entradaMatricula.Length != 6 || !double.TryParse(entradaMatricula, out matriculaProfessor))
+                        {
+                            Console.Write("Matrícula inválida! Digite exatamente 6 números: ");
+                            entradaMatricula = Console.ReadLine()?.Trim() ?? "";
+                        }
+                        Console.Clear();
+                        Professor professor = new Professor(nomePessoa, cpfPessoa, dataNascimentoP, salarioProfessor, matriculaProfessor, disciplinasProfessor);
                         fluxoProfessor(professor);
                         break;
                     default:
@@ -119,13 +131,14 @@ namespace GestaoAcad
                 while (executando)
                 {
                     
-                    Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar contracheque, 3- Ver turmas, 4-Sair");
+                    Console.WriteLine("Escolha: 1- Acessar informações, 2- Acessar contracheque, 3- Ver turmas, 4-Ver disciplinas lecionadas, 5-Sair");
                     string entrada = Console.ReadLine()?.Trim() ?? "";
 
                     if (!int.TryParse(entrada, out int escolha))
                     {
                         Console.WriteLine("Por favor, digite um número válido!");
                     }
+                    professor.SortearDisciplinas(disciplinasProfessor, 3);
                     switch (escolha)
                     {
                         case 1:
@@ -138,6 +151,9 @@ namespace GestaoAcad
                             professor.GerarTurmasAleatorias();
                             break;
                         case 4:
+                            professor.ExibirDisciplinas();
+                            break;
+                        case 5:
                         executando = false;
                             Console.WriteLine("Saindo...");
                             break;
